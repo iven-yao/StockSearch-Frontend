@@ -10,7 +10,7 @@ import { RecommendationDAO } from './dao/recommendation-dao';
 // import { SocialDAO } from './dao/social-dao';
 import { EarningsDAO } from './dao/earnings-dao';
 
-let host = 'http://ec2-13-52-103-236.us-west-1.compute.amazonaws.com:3000';
+let host = 'https://stock-search-api.vercel.app';
 
 @Injectable({
   providedIn: 'root'
