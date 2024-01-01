@@ -3,11 +3,9 @@
     *ngIf="
         (!quote 
         || !profile2 
-        || !hourlyCandle 
         || !peers 
         || !topNews 
         || !recommendation 
-        || !social 
         || !earnings) 
         && validTicker
     "
@@ -18,11 +16,9 @@
     *ngIf="
         (quote 
         && profile2 
-        && hourlyCandle 
         && peers 
         && topNews 
         && recommendation 
-        && social 
         && earnings 
         && validTicker)
     "

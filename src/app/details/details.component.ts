@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendHelperService } from '../backend-helper.service';
-import { CandleDAO } from '../dao/candle-dao';
+// import { CandleDAO } from '../dao/candle-dao';
 import { EarningsDAO } from '../dao/earnings-dao';
 import { NewsDAO } from '../dao/news-dao';
 import { Profile2DAO } from '../dao/profile2-dao';
 import { QuoteDAO } from '../dao/quote-dao';
 import { RecommendationDAO } from '../dao/recommendation-dao';
-import { SocialDAO } from '../dao/social-dao';
+// import { SocialDAO } from '../dao/social-dao';
 
 import * as Highcharts from 'highcharts/highstock';
 import { Options } from 'highcharts/highstock';
@@ -36,13 +36,13 @@ export class DetailsComponent implements OnInit {
   validTicker:boolean = true;
   quote:QuoteDAO|undefined;
   profile2:Profile2DAO|undefined;
-  candle:CandleDAO|undefined;
-  hourlyCandle:CandleDAO|undefined;
-  historicalCandle:CandleDAO|undefined;
+  // candle:CandleDAO|undefined;
+  // hourlyCandle:CandleDAO|undefined;
+  // historicalCandle:CandleDAO|undefined;
   peers:[]|undefined;
   topNews:NewsDAO[]|undefined;
   recommendation: RecommendationDAO[]|undefined;
-  social: SocialDAO|undefined;
+  // social: SocialDAO|undefined;
   redditTotalMention: number = 0;
   redditPosMention: number = 0;
   redditNegMention: number = 0;
@@ -166,139 +166,139 @@ export class DetailsComponent implements OnInit {
     }
   }
 
-  createHistoricalChart() {
-    let ohlc = this.historicalCandle?.t.map((val, index) => {
-      return [val*1000, 
-              this.historicalCandle?.o[index],
-              this.historicalCandle?.h[index],
-              this.historicalCandle?.l[index],
-              this.historicalCandle?.c[index],
-            ];
-    });
+  // createHistoricalChart() {
+  //   let ohlc = this.historicalCandle?.t.map((val, index) => {
+  //     return [val*1000, 
+  //             this.historicalCandle?.o[index],
+  //             this.historicalCandle?.h[index],
+  //             this.historicalCandle?.l[index],
+  //             this.historicalCandle?.c[index],
+  //           ];
+  //   });
 
-    let v = this.historicalCandle?.t.map((val, index) => {
-      return [val*1000,
-              this.historicalCandle?.v[index]
-            ];
-    });
+  //   let v = this.historicalCandle?.t.map((val, index) => {
+  //     return [val*1000,
+  //             this.historicalCandle?.v[index]
+  //           ];
+  //   });
 
-    this.historicalChartOptions = {
-      series: [
-        {
-          data: ohlc,
-          type: 'candlestick',
-          name: this.symbol,
-          id: this.symbol,
-          zIndex:2
-        },
-        {
-          data: v,
-          type: 'column',
-          name: 'Volume',
-          id: 'volume',
-          yAxis: 1
-        },
-        {
-          type: 'vbp',
-          linkedTo: this.symbol,
-          params: {
-            volumeSeriesID: 'volume'
-          },
-          dataLabels: {
-            enabled: false
-          },
-          zoneLines: {
-            enabled: false
-          }
+  //   this.historicalChartOptions = {
+  //     series: [
+  //       {
+  //         data: ohlc,
+  //         type: 'candlestick',
+  //         name: this.symbol,
+  //         id: this.symbol,
+  //         zIndex:2
+  //       },
+  //       {
+  //         data: v,
+  //         type: 'column',
+  //         name: 'Volume',
+  //         id: 'volume',
+  //         yAxis: 1
+  //       },
+  //       {
+  //         type: 'vbp',
+  //         linkedTo: this.symbol,
+  //         params: {
+  //           volumeSeriesID: 'volume'
+  //         },
+  //         dataLabels: {
+  //           enabled: false
+  //         },
+  //         zoneLines: {
+  //           enabled: false
+  //         }
 
-        },
-        {
-          type: 'sma',
-          linkedTo: this.symbol,
-          zIndex: 1,
-          marker: {
-            enabled: false
-          }
-        }
-      ],
-      title: {
-        text: this.symbol + " Historical"
-      },
-      subtitle: {
-        text: 'With SMA and Volume by Price technical indicators'
-      },
-      yAxis: [
-        {
-          labels: {
-            align: 'right',
-            x: -3
-          },
-          title: {
-            text: 'OHLC'
-          },
-          height: '60%',
-          lineWidth: 2,
-          startOnTick: false,
-          endOnTick: false,
-          resize: {
-            enabled: true
-          }
-        },
-        {
-          labels: {
-            align: 'right',
-            x: -3
-          },
-          title: {
-            text: 'Volume'
-          },
-          top: '65%',
-          height: '35%',
-          offset: 0,
-          lineWidth: 2
-        }
-      ],
-      tooltip: {
-        split: true
-      },
-      rangeSelector: {
-        buttons: [
-          {
-            type:'month',
-            count: 1,
-            text:'1m'
-          },
-          {
-            type:'month',
-            count: 3,
-            text:'3m'
-          },
-          {
-            type:'month',
-            count: 6,
-            text:'6m'
-          },
-          {
-            type:'ytd',
-            text:'YTD'
-          },
-          {
-            type:'year',
-            count: 1,
-            text:'1y'
-          },
-          {
-            type:'all',
-            text:'All'
-          }
-        ],
-        selected: 2
-      },
-      time: {
-        timezoneOffset: new Date().getTimezoneOffset()
-      }
-    };
-  }
+  //       },
+  //       {
+  //         type: 'sma',
+  //         linkedTo: this.symbol,
+  //         zIndex: 1,
+  //         marker: {
+  //           enabled: false
+  //         }
+  //       }
+  //     ],
+  //     title: {
+  //       text: this.symbol + " Historical"
+  //     },
+  //     subtitle: {
+  //       text: 'With SMA and Volume by Price technical indicators'
+  //     },
+  //     yAxis: [
+  //       {
+  //         labels: {
+  //           align: 'right',
+  //           x: -3
+  //         },
+  //         title: {
+  //           text: 'OHLC'
+  //         },
+  //         height: '60%',
+  //         lineWidth: 2,
+  //         startOnTick: false,
+  //         endOnTick: false,
+  //         resize: {
+  //           enabled: true
+  //         }
+  //       },
+  //       {
+  //         labels: {
+  //           align: 'right',
+  //           x: -3
+  //         },
+  //         title: {
+  //           text: 'Volume'
+  //         },
+  //         top: '65%',
+  //         height: '35%',
+  //         offset: 0,
+  //         lineWidth: 2
+  //       }
+  //     ],
+  //     tooltip: {
+  //       split: true
+  //     },
+  //     rangeSelector: {
+  //       buttons: [
+  //         {
+  //           type:'month',
+  //           count: 1,
+  //           text:'1m'
+  //         },
+  //         {
+  //           type:'month',
+  //           count: 3,
+  //           text:'3m'
+  //         },
+  //         {
+  //           type:'month',
+  //           count: 6,
+  //           text:'6m'
+  //         },
+  //         {
+  //           type:'ytd',
+  //           text:'YTD'
+  //         },
+  //         {
+  //           type:'year',
+  //           count: 1,
+  //           text:'1y'
+  //         },
+  //         {
+  //           type:'all',
+  //           text:'All'
+  //         }
+  //       ],
+  //       selected: 2
+  //     },
+  //     time: {
+  //       timezoneOffset: new Date().getTimezoneOffset()
+  //     }
+  //   };
+  // }
 
   createTrendsChart() {
     let strongBuyData = this.recommendation?.map( item => item.strongBuy);
@@ -385,39 +385,39 @@ export class DetailsComponent implements OnInit {
     
   }
 
-  createHourlyChart() {
+  // createHourlyChart() {
 
-    let data = this.hourlyCandle?.t.map((val, index) => {
-      return [val*1000, this.hourlyCandle?.c[index]];
-    });
+  //   let data = this.hourlyCandle?.t.map((val, index) => {
+  //     return [val*1000, this.hourlyCandle?.c[index]];
+  //   });
 
-    this.hourlyChartOptions = {
-      series:[
-        {
-          data: data,
-          color: this.quote!.d<0 ? '#FF0000': '#28A745',
-          showInNavigator: false,
-          name: this.profile2?.ticker,
-          type: 'line',
-          tooltip: {
-            valueDecimals: 2
-          }
-        }
-      ],
-      title: {
-        text: this.profile2?.ticker + " Hourly Price Variation"
-      },
-      rangeSelector: {
-        enabled: false
-      },
-      navigator: {
-        enabled: false
-      },
-      time: {
-        timezoneOffset: new Date().getTimezoneOffset()
-      }
-    }
-  }
+  //   this.hourlyChartOptions = {
+  //     series:[
+  //       {
+  //         data: data,
+  //         color: this.quote!.d<0 ? '#FF0000': '#28A745',
+  //         showInNavigator: false,
+  //         name: this.profile2?.ticker,
+  //         type: 'line',
+  //         tooltip: {
+  //           valueDecimals: 2
+  //         }
+  //       }
+  //     ],
+  //     title: {
+  //       text: this.profile2?.ticker + " Hourly Price Variation"
+  //     },
+  //     rangeSelector: {
+  //       enabled: false
+  //     },
+  //     navigator: {
+  //       enabled: false
+  //     },
+  //     time: {
+  //       timezoneOffset: new Date().getTimezoneOffset()
+  //     }
+  //   }
+  // }
 
   formattedDateTime(date:Date) {
     return date.getFullYear()+"-"+(date.getMonth() +1)+"-"+date.getDate()+" "+date.toLocaleTimeString('en-GB');
@@ -461,24 +461,24 @@ export class DetailsComponent implements OnInit {
         } else {
           this.marketOpen = false;
         }
-        this.backendHelper.getCandle(ticker,'5',values.t-21600,values.t).subscribe(
-          (values) => {
-            this.hourlyCandle = values;
-            this.createHourlyChart();
-          }
-        );
+        // this.backendHelper.getCandle(ticker,'5',values.t-21600,values.t).subscribe(
+        //   (values) => {
+        //     this.hourlyCandle = values;
+        //     this.createHourlyChart();
+        //   }
+        // );
       }
     );
     
 
-    this.backendHelper.getCandle(ticker,'D', 
-      Math.floor(new Date().getTime()/1000-2*365*24*60*60), 
-      Math.floor(new Date().getTime()/1000)).subscribe(
-        (values) => {
-          this.historicalCandle = values;
-          this.createHistoricalChart();
-        }
-    );
+    // this.backendHelper.getCandle(ticker,'D', 
+    //   Math.floor(new Date().getTime()/1000-2*365*24*60*60), 
+    //   Math.floor(new Date().getTime()/1000)).subscribe(
+    //     (values) => {
+    //       this.historicalCandle = values;
+    //       this.createHistoricalChart();
+    //     }
+    // );
 
     this.backendHelper.getNews(ticker).subscribe(
       (values) => {
@@ -493,22 +493,22 @@ export class DetailsComponent implements OnInit {
       }
     );
 
-    this.backendHelper.getSocial(ticker).subscribe(
-      (values) => {
-        this.social = values;
-        this.social.reddit.forEach((red)=>{
-          this.redditTotalMention += red.mention;
-          this.redditPosMention += red.positiveMention;
-          this.redditNegMention += red.negativeMention;
-        });
+    // this.backendHelper.getSocial(ticker).subscribe(
+    //   (values) => {
+    //     this.social = values;
+    //     this.social.reddit.forEach((red)=>{
+    //       this.redditTotalMention += red.mention;
+    //       this.redditPosMention += red.positiveMention;
+    //       this.redditNegMention += red.negativeMention;
+    //     });
 
-        this.social.twitter.forEach((twt)=>{
-          this.twitterTotalMention += twt.mention;
-          this.twitterPosMention += twt.positiveMention;
-          this.twitterNegMention += twt.negativeMention;
-        });
-      }
-    );
+    //     this.social.twitter.forEach((twt)=>{
+    //       this.twitterTotalMention += twt.mention;
+    //       this.twitterPosMention += twt.positiveMention;
+    //       this.twitterNegMention += twt.negativeMention;
+    //     });
+    //   }
+    // );
 
     this.backendHelper.getPeers(ticker).subscribe(
       (values) => {
@@ -527,11 +527,11 @@ export class DetailsComponent implements OnInit {
   clearData() {
     this.quote = undefined;
     this.profile2 = undefined;
-    this.candle = undefined;
+    // this.candle = undefined;
     this.peers = undefined;
     this.topNews = undefined;
     this.recommendation = undefined;
-    this.social = undefined;
+    // this.social = undefined;
     this.earnings = undefined;
     this.isInWatchlist = false;
     this.isSellable= false;
